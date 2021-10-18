@@ -1,0 +1,48 @@
+<app-header></app-header>
+
+<div class="container_graph">
+
+  <div class="frame_graph">
+
+    <h1 class="title_graph">TU RESULTADO</h1>
+
+    <div class="graph" style="display: block">
+      <div style="text-align: center;">
+        <img class="img_comu" src="./../../../assets/imgs/comunitarista.png">
+      </div>
+    <div class="rotulos">
+      <div class="etiqueta_izq">
+        <img  src="./../../../assets/imgs/izquierda.png">
+      </div>
+      <canvas class="graph_canvas" baseChart
+      [datasets]="scatterChartData"
+      [options]="scatterChartOptions"
+      [labels]="scatterChartLabels"
+      [chartType]="scatterChartType">
+        </canvas>
+        <div class="etiqueta_der">
+          <img class="" src="./../../../assets/imgs/derecha.png">
+        </div>
+        
+      </div>
+
+        <div style="text-align: center;">
+          <img class="img_comu" src="./../../../assets/imgs/liberal.png">  
+        </div>        
+    </div>
+
+    <p class="title_text_graph">{{titulo_resultado}}</p>
+    <p class="description_text_graph">{{descripcion_resultado}}</p>
+  </div>
+
+  <div>
+    <p class="description_text_final">Para conocer lo que hacemos seguinos en:</p>
+    <div style="text-align: center;">
+      <a href="https://www.instagram.com/democraciaenred/?hl=es-la"><img class="img_redes" src="./../../../assets/imgs/Instagram.png"></a>
+      <a href="https://twitter.com/fundacionder?lang=es"><img class="img_redes" src="./../../../assets/imgs/Twitter.png"></a>
+    </div>
+  </div>
+  <div class="spacer_graph"></div>
+</div>
+
+
