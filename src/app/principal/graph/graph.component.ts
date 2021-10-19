@@ -6,6 +6,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
 
 import { ChartDataSets, ChartType, ChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
+import { CategoriaResultado } from 'src/app/models/trivia';
 
 @Component({
   selector: 'app-graph',
@@ -15,14 +16,22 @@ import { Label } from 'ng2-charts';
 export class GraphComponent implements OnInit { 
   posX:number=0;
   posY:number=0;
-
+  
   titulo_resultado:String ='HOLA';
   descripcion_resultado:String ='Holaaa';
+  categorias: CategoriaResultado[]=[];
 
   ngOnInit(): void {  
     this.posX= this.triviaService.trivia.PositionX;
     this.posY= this.triviaService.trivia.PositionY;
     console.log(this.posX,this.posY);
+
+    this.categorias=this.triviaService.categorias;
+    this.categorias[3].selected=false;
+    this.categorias[2].selected=false;
+    this.categorias[1].selected=false;
+    this.categorias[0].selected=false;
+
     this.scatterChartData=[
       {
         data: [
@@ -35,27 +44,43 @@ export class GraphComponent implements OnInit {
     
     if(this.posX>0){
       if(this.posY>0){
-        this.titulo_resultado="POPULISMOS DE DERECHA";
-        this.descripcion_resultado="";
+        //this.titulo_resultado="POPULISMOS DE DERECHA";
+        this.categorias[3].selected=true;
+        this.categorias[2].selected=false;
+        this.categorias[1].selected=false;
+        this.categorias[0].selected=false;
       }
       else{
-        this.titulo_resultado="LIBERALISMOS DE DERECHA";
-        this.descripcion_resultado="Las personas en este cuadrante tratan de defender la libertad como bien político primario en todos los sentidos. Estas personas suelen verse a sí mismas como partidarias acérrimas de la libertad personal y económica y son muy escépticas sobre los planes y metas colectivos, poniendo por encima la asociación voluntaria y la caridad a los mandatos estatales por la igualdad. Normalmente, le otorgan al Estado un papel marginal con respecto a las personas de los otros tres cuadrantes, creen en el orden social espontáneo que da el mercado. Es or eso que estas personas se revelan contra los impuestos, que constituyen un acto de coacción y, por ende, una violación de su libertad individual.";
-      }
+        //this.titulo_resultado="LIBERALISMOS DE DERECHA";
+        this.categorias[1].selected=true;
+        this.categorias[2].selected=false;
+        this.categorias[3].selected=false;
+        this.categorias[0].selected=false;
+      }   
     }
     else{
       if(this.posY>0){
-        this.titulo_resultado="POPULISMOS DE IZQUIERDA";
-        this.descripcion_resultado="Las personas en este cuadrante tratan de promover soluciones comunales a los problemas sociales y económicos. Estas personas suelen verse a sí mismas como favorables a un formas estatales que frenen los excesos del capitalismo y el poder de las élites y, así, disminuir la desigualdad social en una economía mixta y con un estado presente. Sus soluciones son colectivas, con valores asociados a formas de democracia más directas, con el Estado intervinienda en la economía para la redistribución de bienes y servicios.";
+        //this.titulo_resultado="POPULISMOS DE IZQUIERDA";
+        this.categorias[2].selected=true;
+        this.categorias[1].selected=false;
+        this.categorias[3].selected=false;
+        this.categorias[0].selected=false;
       }
       else{
-        this.titulo_resultado="LIBERALISMOS DE IZQUIERDA";
-        this.descripcion_resultado="Los personas de este cuadrante defienden la libertad individual, pero creen en la intervención del Estado en el mercado para promover derechos sociales. Estas personas suelen verse a sí mismas haciendo equilibrio entre la libertad individual y la justicia social,. Aunque son escépticas respecto de la participación del Estado en los asuntos civiles, consideran que el Estado tiene un papel legítimo en garantizar condiciones de igualdad y en la promoción de sectores vulnerables. Así, si bien remarcan la importancia de la libertad, creen ésta también se relaciona con el acceso el acceso individual a bienes material (ej, una vivienda) e inmateriales (ej. educación) que justifican criterios de redistribución de recursos de los ricos a los pobres.";
+        //this.titulo_resultado="LIBERALISMOS DE IZQUIERDA";
+        this.categorias[0].selected=true;
+        this.categorias[2].selected=false;
+        this.categorias[3].selected=false;
+        this.categorias[1].selected=false;
       }
     }
     if(this.posX==0 && this.posY==0){
       this.titulo_resultado="CENTRO";
-        this.descripcion_resultado="CENTRO";
+        this.descripcion_resultado="WOW... estás en el centro!";
+        this.categorias[0].selected=false;
+        this.categorias[2].selected=false;
+        this.categorias[3].selected=false;
+        this.categorias[1].selected=false;
     }
   }
 
@@ -69,6 +94,9 @@ export class GraphComponent implements OnInit {
       xAxes: [{
         gridLines: {
             display:true,
+            lineWidth: 0,
+            zeroLineWidth:3,
+            zeroLineColor:"grey",
         },
         display: true,
         ticks: {
@@ -78,15 +106,23 @@ export class GraphComponent implements OnInit {
     }],
       yAxes: [{
           gridLines: {
-              display:true
+              display:true,
+              lineWidth: 0,
+              zeroLineWidth:3,
+              zeroLineColor:"grey",
+          },
+          scaleLabel:{
+            display:false,
+            lineHeight:0,
           },
           display: true,
           ticks: {
             max : 30,
             min: -30
           }
-      }]
-    }
+      }],
+    },
+
 
   };
 
@@ -103,6 +139,18 @@ export class GraphComponent implements OnInit {
       pointRadius: 10,
     },
   ];
+
+  public chartColors:Array<any> =[
+    {
+      fillColor:"#ffffff",
+      strokeColor:"#ffffff",
+      pointColor:"#ffffff",
+      pointStrokeColor:"#ffffff",
+      pointHighlightFill:"#ffffff",
+      pointHighlightStroke:"#ffffff",
+      pointBackgroundColor:"black",
+      backgroundColor: "#ffffff"
+    }]
 
   constructor(private triviaService:TriviaService,private _router: Router) { 
     //this.posX=triviaService.trivia.PositionX;

@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Pregunta, PreguntaUsuario } from 'src/app/models/pregunta';
-import { Trivia, TriviaUser } from 'src/app/models/trivia';
+import { CategoriaResultado, Trivia, TriviaUser } from 'src/app/models/trivia';
 import { User } from 'src/app/models/user';
 
 import { Cuestionario } from '../TriviaData';
 import { CuestionarioUser } from '../TriviaUserData';
+import { categoriasResultado } from '../TriviaData';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class TriviaService {
   triviaUser: TriviaUser=new TriviaUser();
   user:User=new User();
 
+  categorias: CategoriaResultado[]=[];
   PreguntaEnCurso?: Pregunta;
   ordenPregunta:number=0;
 
@@ -30,6 +32,7 @@ export class TriviaService {
     this.triviaUser.cuestionarioUsuario=CuestionarioUser;
     this.ordenPreguntaUsuario=0;
     this.PreguntaUsuarioEnCurso=this.triviaUser.cuestionarioUsuario[this.ordenPreguntaUsuario];
+    this.categorias=categoriasResultado;
   }
 
   getPregunta(ordenPregunta:number){
@@ -49,10 +52,6 @@ export class TriviaService {
     else{
       this.trivia.PositionY=this.trivia.PositionY+this.trivia.cuestionario[orden].QuestionScore*(optionChoiced-3)
     }
-  }
-
-  setUserData(){
-
   }
 
 }

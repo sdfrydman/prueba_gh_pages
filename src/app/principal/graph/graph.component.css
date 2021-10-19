@@ -45,13 +45,6 @@
 }
 
 
-.btn_graph{
-    width: 300px;
-    height: 80px;
-    font-size: 1.5em;
-    margin-top: 15px;
-    font-family: 'GeneralSans-Regular';
-}
 
 .btn2_graph{
     width: 350px;
@@ -121,6 +114,7 @@
 }
 
 .description_text_final{
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -143,4 +137,59 @@
 
 .etiqueta_der{
     align-self: center;
+}
+
+.example-accordion-item-header{
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.example-accordion-item-body{
+
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    font-size: 1em;
+    font-family: 'GeneralSans-Medium';
+    padding: 10px;
+
+}
+
+.example-accordion{
+    margin-top: 20px;
+    background-color: white; 
+    width: 100%;       
+}
+
+.example-accordion-item-description{
+    margin-right: 20%;
+
+}
+
+.chosen{
+    background-color: lightslategray;
+}
+
+.btn_graph{
+    width: 250px;
+    height: 40px;
+    font-size: 1.1em;
+    font-family: 'GeneralSans-Medium';
+    border: 1px solid #000;
+    vertical-align: middle;
+    border-radius: 10px;
+}
+
+.item-title{
+    font-size: 1.2em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'GeneralSans-Bold';
+    margin-left: 20%;
 }

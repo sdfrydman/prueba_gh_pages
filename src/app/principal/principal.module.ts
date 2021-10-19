@@ -4,6 +4,7 @@ import {RouterModule} from '@angular/router';
 import { ChartsModule } from 'ng2-charts';
 
 import {MatButtonModule} from '@angular/material/button';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
 
 import { HeaderComponent } from './header/header.component';
 import { IntroComponent } from './intro/intro.component';
@@ -45,6 +46,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatToolbarModule,
     GoogleChartsModule,
     MatIconModule,
+    CdkAccordionModule,
   ]
 })
 export class PrincipalModule { }
